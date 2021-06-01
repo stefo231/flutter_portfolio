@@ -1,5 +1,4 @@
-name:Gh-Pages-Staging
-
+name: Gh-Pages-Staging
 on:
   push:
     branches: [main]
