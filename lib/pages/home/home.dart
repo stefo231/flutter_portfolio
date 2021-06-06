@@ -1,61 +1,74 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:responsive_portfolio/utils/constants.dart';
 import 'package:responsive_portfolio/utils/globals.dart';
 
+import 'components/carousel.dart';
+import 'components/cv_section.dart';
+import 'components/education_section.dart';
+import 'components/footer.dart';
 import 'components/header.dart';
+import 'components/ios_app_ad.dart';
+import 'components/portfolio_stats.dart';
+import 'components/skill_section.dart';
+import 'components/sponsors.dart';
+import 'components/testimonial_widget.dart';
+import 'components/website_ad.dart';
 
 class Home extends StatelessWidget {
-  // const Home({Key key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: Globals.scaffoldKey,
       endDrawer: Drawer(
         child: SafeArea(
-            child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
-          child: ListView.separated(
-            itemBuilder: (BuildContext context, int index) {
-              return headerItems[index].isButton
-                  ? MouseRegion(
-                      cursor: SystemMouseCursors.click,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: kDangerColor,
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        padding: EdgeInsets.symmetric(horizontal: 28.0),
-                        child: TextButton(
-                          onPressed: headerItems[index].onTap,
-                          child: Text(
-                            headerItems[index].title,
-                            style: TextStyle(
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: 16.0,
+              vertical: 24.0,
+            ),
+            child: ListView.separated(
+              itemBuilder: (BuildContext context, int index) {
+                return headerItems[index].isButton
+                    ? MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: kDangerColor,
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          padding: EdgeInsets.symmetric(horizontal: 28.0),
+                          child: TextButton(
+                            onPressed: headerItems[index].onTap,
+                            child: Text(
+                              headerItems[index].title,
+                              style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 13.0,
-                                fontWeight: FontWeight.bold),
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                    )
-                  : ListTile(
-                      title: Text(
-                        headerItems[index].title,
-                        style: TextStyle(
+                      )
+                    : ListTile(
+                        title: Text(
+                          headerItems[index].title,
+                          style: TextStyle(
                             color: Colors.white,
-                            fontSize: 13.0,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    );
-            },
-            separatorBuilder: (BuildContext context, int index) {
-              return SizedBox(
-                height: 10.0,
-              );
-            },
-            itemCount: headerItems.length,
+                          ),
+                        ),
+                      );
+              },
+              separatorBuilder: (BuildContext context, int index) {
+                return SizedBox(
+                  height: 10.0,
+                );
+              },
+              itemCount: headerItems.length,
+            ),
           ),
-        )),
+        ),
       ),
       body: Container(
         child: SingleChildScrollView(
@@ -64,7 +77,38 @@ class Home extends StatelessWidget {
             children: [
               Container(
                 child: Header(),
-              )
+              ),
+              Carousel(),
+              SizedBox(
+                height: 20.0,
+              ),
+              CvSection(),
+              IosAppAd(),
+              SizedBox(
+                height: 70.0,
+              ),
+              WebsiteAd(),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 28.0),
+                child: PortfolioStats(),
+              ),
+              SizedBox(
+                height: 50.0,
+              ),
+              EducationSection(),
+              SizedBox(
+                height: 50.0,
+              ),
+              SkillSection(),
+              SizedBox(
+                height: 50.0,
+              ),
+              Sponsors(),
+              SizedBox(
+                height: 50.0,
+              ),
+              TestimonialWidget(),
+              Footer(),
             ],
           ),
         ),
